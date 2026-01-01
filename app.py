@@ -1,8 +1,8 @@
 import sys
 
 def calculate_gross_salary(basic):
-    hra = basic * 0.2
-    da = basic * 0.1
+    hra = basic * 0.20
+    da = basic * 0.10
     return basic + hra + da
 
 def get_employee_details():
@@ -12,7 +12,12 @@ def get_employee_details():
 
     name = sys.argv[1]
     emp_id = sys.argv[2]
-    basic = float(sys.argv[3])
+
+    try:
+        basic = float(sys.argv[3])
+    except ValueError:
+        print("Error: Basic salary must be a number.")
+        sys.exit(1)
 
     gross_salary = calculate_gross_salary(basic)
 
@@ -24,11 +29,12 @@ def get_employee_details():
     }
 
 def display_employee(employee):
-    print("Employee Salary Details")
-    print("Name:", employee["name"])
-    print("ID:", employee["emp_id"])
-    print("Basic Salary:", employee["basic"])
-    print("Gross Salary:", employee["gross_salary"])
+    print("\nEmployee Salary Details")
+    print("-----------------------")
+    print("Name         :", employee["name"])
+    print("Employee ID  :", employee["emp_id"])
+    print("Basic Salary :", employee["basic"])
+    print("Gross Salary :", employee["gross_salary"])
 
 if __name__ == "__main__":
     employee = get_employee_details()
